@@ -70,8 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             INSERT INTO `user` (username, password, role) 
             VALUES (?, ?, ?)
         ");
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
-        $stmt->execute([$username, $password_hash, $role]);
+        $stmt->execute([$username, $password, $role]);
         $user_id = $pdo->lastInsertId();
 
         // Create patient record
@@ -166,6 +165,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="password" name="password" required
                                class="w-full pl-10 pr-3 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
                                placeholder="Create a password">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input type="password" name="confirm_password" required
+                               class="w-full pl-10 pr-3 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+                               placeholder="Confirm your password">
                     </div>
                 </div>
 
